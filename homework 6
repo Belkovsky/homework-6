@@ -1,0 +1,90 @@
+// Задача 41: Пользователь вводит с клавиатуры M чисел. Посчитайте, сколько чисел больше 0 ввёл пользователь.
+
+int[] Array(int size)
+{
+    while (size <= 0)
+    {
+        Console.Write("Введите число больше нуля");
+        size = Convert.ToInt32(Console.ReadLine());
+    }
+
+    int[] array = new int[size];
+
+    for (int i = 0; i < array.Length; i++)
+    {
+        Console.WriteLine("Введите число: ");
+        array[i] = Convert.ToInt32(Console.ReadLine());
+    }
+    return array;
+}
+
+void ShowArray(int[] array)
+{
+    for (int i = 0; i < array.Length; i++)
+        Console.Write($"{array[i]} ");
+
+    Console.WriteLine();
+}
+
+int CorrectArray(int[] array)
+{
+    int numbers = 0;
+    for (int j = 0; j < array.Length; j++)
+        if (array[j] > 0) numbers++;
+
+    return numbers;
+}
+
+Console.Write("Введите массив: ");
+int number = Convert.ToInt32(Console.ReadLine());
+
+int[] newarray = Array(number);
+
+Console.Write("Ваш массив: ");
+ShowArray(newarray);
+
+Console.WriteLine("Количество чисел, которые больше 0, в массиве: " + CorrectArray(newarray));
+
+// Задача 43: Напишите программу, которая найдёт точку пересечения двух прямых, заданных уравнениями y = k1 * x + b1, y = k2 * x + b2; значения b1, k1, b2 и k2 задаются пользователем.
+b1 = 2, k1 = 5, b2 = 4, k2 = 9 -> (-0,5; 5,5)
+
+double[] Intersection(double a1, double a2, double c1, double c2)
+{
+    while (a1 == a2)
+    {
+        Console.Write("При k1 = k2 прямые будут параллельными. Введите новое значение k1: ");
+        a1 = Convert.ToDouble(Console.ReadLine());
+    }
+
+    double x = (c2 - c1) / (a1 - a2);
+    double y = a2 * x + c2;
+
+    double[] array = new double[] { x, y };
+
+    return array;
+}
+
+void ShowIntersection(double[] array)
+{
+    for (int i = 0; i < array.Length; i++)
+    {
+        array[i] = Math.Round(array[i], 1);
+        Console.Write($"{array[i]} ");
+    }
+    Console.WriteLine();
+}
+
+Console.Write("Введите значение k1: ");
+double k1 = Convert.ToDouble(Console.ReadLine());
+Console.Write("Введите значение k2: ");
+double k2 = Convert.ToDouble(Console.ReadLine());
+Console.Write("Введите значение b1: ");
+double b1 = Convert.ToDouble(Console.ReadLine());
+Console.Write("Введите значение b2: ");
+double b2 = Convert.ToDouble(Console.ReadLine());
+
+double[] point = Intersection(k1, k2, b1, b2);
+
+Console.Write("Точка пересечения прямых имеет координаты: ");
+
+ShowIntersection(point);
